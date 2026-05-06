@@ -1,0 +1,62 @@
+.merchant-orders-page {
+  max-width: 850px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.page-header h2 { margin: 0 0 1.5rem; font-size: 1.6rem; color: #333; }
+
+.alert.error {
+  background: #fff3f3; color: #c62828;
+  border: 1px solid #ffcdd2;
+  padding: 0.75rem 1rem; border-radius: 8px; margin-bottom: 1rem;
+}
+
+.loading, .empty { text-align: center; color: #aaa; padding: 3rem; }
+
+.summary-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+
+  strong { font-size: 1.3rem; }
+  .revenue { font-size: 1.5rem; }
+}
+
+.orders-table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+
+.table-header, .table-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 0.5fr 1fr 1fr;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+.table-header {
+  background: #f8f8f8;
+  font-weight: 600;
+  color: #555;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row {
+  color: #444;
+  border-bottom: 1px solid #f5f5f5;
+  transition: background 0.15s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: #fafafa; }
+
+  .line-total { font-weight: 700; color: #333; }
+}

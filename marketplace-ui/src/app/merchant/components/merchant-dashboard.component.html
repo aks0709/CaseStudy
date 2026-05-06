@@ -1,0 +1,91 @@
+<div class="dashboard-page">
+
+  <div class="alert success" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div *ngIf="loading" class="loading">Loading...</div>
+
+  <!-- Create profile if not set up yet -->
+  <div class="section-card" *ngIf="!loading && !profile">
+    <h3>Set Up Your Store</h3>
+    <p class="hint">Create your merchant profile to start listing products.</p>
+
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" formControlName="businessName" placeholder="e.g. Smith's Electronics" />
+        <span class="field-error">{{ getError(profileForm, 'businessName') }}</span>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea formControlName="description" rows="3" placeholder="Tell customers about your store..."></textarea>
+        <span class="field-error">{{ getError(profileForm, 'description') }}</span>
+      </div>
+      <button type="submit" class="btn-primary" [disabled]="savingProfile">
+        {{ savingProfile ? 'Saving...' : 'Create Profile' }}
+      </button>
+    </form>
+  </div>
+
+  <!-- Profile exists — show store info and products -->
+  <ng-container *ngIf="profile">
+    <div class="section-card profile-banner">
+      <h2>{{ profile.businessName }}</h2>
+      <p>{{ profile.description }}</p>
+    </div>
+
+    <!-- Add / Edit product form -->
+    <div class="section-card">
+      <h3>{{ editingProductId ? 'Edit Product' : 'Add Product' }}</h3>
+
+      <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" formControlName="name" placeholder="e.g. Wireless Headphones" />
+            <span class="field-error">{{ getError(productForm, 'name') }}</span>
+          </div>
+          <div class="form-group price-group">
+            <label>Price ($)</label>
+            <input type="number" formControlName="price" placeholder="0.00" step="0.01" />
+            <span class="field-error">{{ getError(productForm, 'price') }}</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" formControlName="description" placeholder="Short product description" />
+          <span class="field-error">{{ getError(productForm, 'description') }}</span>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-primary" [disabled]="savingProduct">
+            {{ savingProduct ? 'Saving...' : (editingProductId ? 'Update Product' : 'Add Product') }}
+          </button>
+          <button type="button" class="btn-cancel" *ngIf="editingProductId" (click)="cancelEdit()">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Product list -->
+    <div class="section-card">
+      <h3>My Products ({{ products.length }})</h3>
+
+      <div *ngIf="products.length === 0" class="empty">No products yet. Add your first product above.</div>
+
+      <div class="product-row" *ngFor="let product of products">
+        <div class="product-info">
+          <strong>{{ product.name }}</strong>
+          <span>{{ product.description }}</span>
+        </div>
+        <div class="product-right">
+          <span class="price">${{ product.price | number:'1.2-2' }}</span>
+          <button class="btn-edit" (click)="editProduct(product)">Edit</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

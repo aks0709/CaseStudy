@@ -1,0 +1,39 @@
+<div class="orders-page">
+  <div class="page-header">
+    <h2>My Orders</h2>
+  </div>
+
+  <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div *ngIf="loading" class="loading">Loading orders...</div>
+
+  <div *ngIf="!loading && orders.length === 0" class="empty">
+    No orders yet. <a routerLink="/catalog">Start shopping!</a>
+  </div>
+
+  <div class="order-card" *ngFor="let order of orders">
+    <div class="order-header">
+      <div>
+        <span class="order-id">Order #{{ order.id }}</span>
+        <span class="order-date">{{ order.placedAt | date:'mediumDate' }}</span>
+      </div>
+      <div class="order-right">
+        <span class="badge" [class.paid]="order.status === 'Paid'" [class.pending]="order.status === 'Pending'">
+          {{ order.status }}
+        </span>
+        <strong class="total">${{ order.totalAmount | number:'1.2-2' }}</strong>
+      </div>
+    </div>
+
+    <div class="order-items">
+      <div class="order-item" *ngFor="let item of order.items">
+        <span>{{ item.productName }}</span>
+        <span>x{{ item.quantity }}</span>
+        <span>${{ item.lineTotal | number:'1.2-2' }}</span>
+      </div>
+    </div>
+
+    <div class="order-footer" *ngIf="order.status === 'Pending'">
+      <button class="btn-pay" (click)="goToPayment(order.id)">Complete Payment</button>
+    </div>
+  </div>
+</div>

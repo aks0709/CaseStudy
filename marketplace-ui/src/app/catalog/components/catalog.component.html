@@ -1,0 +1,50 @@
+<div class="catalog-page">
+  <div class="page-header">
+    <h2>Browse Merchants</h2>
+    <p>Explore products from our merchants</p>
+  </div>
+
+  <div class="alert success" *ngIf="successMessage">{{ successMessage }}</div>
+  <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div class="merchant-list" *ngIf="merchants.length > 0; else noMerchants">
+    <div class="merchant-card" *ngFor="let merchant of merchants">
+
+      <!-- Merchant header — click to expand -->
+      <div class="merchant-header" (click)="toggleMerchant(merchant.id)">
+        <div class="merchant-info">
+          <h3>{{ merchant.businessName }}</h3>
+          <p>{{ merchant.description }}</p>
+        </div>
+        <span class="expand-icon">{{ expandedMerchantId === merchant.id ? '▲' : '▼' }}</span>
+      </div>
+
+      <!-- Products list — shown when merchant is expanded -->
+      <div class="product-list" *ngIf="expandedMerchantId === merchant.id">
+        <div *ngIf="!productsByMerchant[merchant.id]" class="loading">Loading products...</div>
+
+        <div *ngIf="productsByMerchant[merchant.id]?.length === 0" class="empty">
+          No products listed yet.
+        </div>
+
+        <div class="product-card" *ngFor="let product of productsByMerchant[merchant.id]">
+          <div class="product-info">
+            <h4>{{ product.name }}</h4>
+            <p>{{ product.description }}</p>
+            <span class="price">${{ product.price | number:'1.2-2' }}</span>
+          </div>
+          <button class="btn-add"
+            (click)="addToCart(product)"
+            [disabled]="addingProductId === product.id">
+            {{ addingProductId === product.id ? 'Adding...' : '+ Add to Cart' }}
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-template #noMerchants>
+    <div class="empty-state">No merchants available yet.</div>
+  </ng-template>
+</div>

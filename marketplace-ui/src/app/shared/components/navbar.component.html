@@ -1,0 +1,30 @@
+<!-- Navigation Bar -->
+ <!-- only show navbar when logged in -->
+<nav class="navbar" *ngIf="authService.isLoggedIn()">
+  <div class="nav-brand">
+    <span>Marketplace</span>
+  </div>
+
+  <div class="nav-links">
+    <!-- Customer links -->
+    <ng-container *ngIf="authService.isCustomer()">
+      <a routerLink="/catalog" routerLinkActive="active">Browse</a>
+      <a routerLink="/cart" routerLinkActive="active">Cart</a>
+      <a routerLink="/order/history" routerLinkActive="active">Orders</a>
+    </ng-container>
+
+    <!-- Merchant links -->
+    <ng-container *ngIf="authService.isMerchant()">
+      <a routerLink="/merchant/products" routerLinkActive="active">My Products</a>
+      <a routerLink="/merchant/orders" routerLinkActive="active">Orders Received</a>
+    </ng-container>
+  </div>
+
+  <div class="nav-user">
+    <span class="user-name">{{ authService.getFullName() }}</span>
+    <span class="role-badge" [class.merchant]="authService.isMerchant()">
+      {{ authService.getRole() }}
+    </span>
+    <button class="btn-logout" (click)="logout()">Logout</button>
+  </div>
+</nav>

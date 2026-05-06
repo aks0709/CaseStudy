@@ -1,0 +1,123 @@
+.cart-page {
+  max-width: 750px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.page-header h2 { margin: 0 0 1.5rem; font-size: 1.6rem; color: #333; }
+
+.alert.error {
+  background: #fff3f3;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.loading, .empty-cart {
+  text-align: center;
+  color: #aaa;
+  padding: 3rem 1rem;
+
+  .btn-browse {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background: #667eea;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 0.75rem;
+
+  .item-info {
+    flex: 1;
+    h4 { margin: 0; font-size: 0.95rem; color: #333; }
+    .unit-price { font-size: 0.82rem; color: #999; }
+  }
+
+  .item-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    button {
+      width: 28px;
+      height: 28px;
+      border: 1.5px solid #ddd;
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+
+      &:disabled { opacity: 0.4; cursor: not-allowed; }
+      &:hover:not(:disabled) { border-color: #667eea; color: #667eea; }
+    }
+
+    .qty { font-weight: 600; min-width: 24px; text-align: center; }
+  }
+
+  .item-total {
+    font-weight: 700;
+    color: #333;
+    min-width: 70px;
+    text-align: right;
+  }
+
+  .btn-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+
+    &:hover { opacity: 1; }
+  }
+}
+
+.cart-summary {
+  background: white;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-top: 1rem;
+
+  .grand-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+
+    strong { font-size: 1.3rem; color: #333; }
+  }
+
+  .btn-checkout {
+    width: 100%;
+    padding: 0.8rem;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:disabled { opacity: 0.6; cursor: not-allowed; }
+    &:hover:not(:disabled) { opacity: 0.9; }
+  }
+}

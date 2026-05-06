@@ -1,0 +1,36 @@
+<div class="merchant-orders-page">
+  <div class="page-header">
+    <h2>Orders Received</h2>
+  </div>
+
+  <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
+  <div *ngIf="loading" class="loading">Loading orders...</div>
+
+  <div *ngIf="!loading && items.length === 0" class="empty">No orders received yet.</div>
+
+  <ng-container *ngIf="!loading && items.length > 0">
+    <div class="summary-card">
+      <span>Total Items Sold</span>
+      <strong>{{ items.length }}</strong>
+      <span>Total Revenue</span>
+      <strong class="revenue">${{ getTotalRevenue() | number:'1.2-2' }}</strong>
+    </div>
+
+    <div class="orders-table">
+      <div class="table-header">
+        <span>Product</span>
+        <span>Order #</span>
+        <span>Qty</span>
+        <span>Unit Price</span>
+        <span>Line Total</span>
+      </div>
+      <div class="table-row" *ngFor="let item of items">
+        <span>{{ item.productName }}</span>
+        <span>#{{ item.orderId }}</span>
+        <span>{{ item.quantity }}</span>
+        <span>${{ item.unitPrice | number:'1.2-2' }}</span>
+        <span class="line-total">${{ item.lineTotal | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,63 @@
+<div class="payment-page">
+  <div class="page-header">
+    <h2>Payment</h2>
+    <p>Order #{{ orderId }}</p>
+  </div>
+
+  <div class="alert error" *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <div *ngIf="loading" class="loading">Initiating payment...</div>
+
+  <!-- Payment initiated — show gateway URL and complete button -->
+  <div class="payment-card" *ngIf="payment && !status">
+    <div class="gateway-info">
+      <span class="label">Payment Gateway URL</span>
+      <a [href]="payment.paymentUrl" target="_blank" class="gateway-url">
+        {{ payment.paymentUrl }}
+      </a>
+      <p class="hint">In a real app, you'd be redirected here. Click "Complete Payment" to simulate success.</p>
+    </div>
+
+    <div class="payment-meta">
+      <div class="meta-row">
+        <span>Payment ID</span>
+        <strong>#{{ payment.paymentId }}</strong>
+      </div>
+      <div class="meta-row">
+        <span>Status</span>
+        <span class="badge pending">{{ payment.status }}</span>
+      </div>
+      <div class="meta-row">
+        <span>Initiated At</span>
+        <strong>{{ payment.initiatedAt | date:'medium' }}</strong>
+      </div>
+    </div>
+
+    <button class="btn-complete" (click)="completePayment()" [disabled]="completing">
+      {{ completing ? 'Processing...' : 'Complete Payment' }}
+    </button>
+  </div>
+
+  <!-- Payment completed — show final status -->
+  <div class="status-card success" *ngIf="status">
+
+    <h3>Payment Successful!</h3>
+
+    <div class="status-details">
+      <div class="meta-row">
+        <span>Payment Status</span>
+        <span class="badge paid">{{ status.paymentStatus }}</span>
+      </div>
+      <div class="meta-row">
+        <span>Order Status</span>
+        <span class="badge paid">{{ status.orderStatus }}</span>
+      </div>
+      <div class="meta-row">
+        <span>Completed At</span>
+        <strong>{{ status.completedAt | date:'medium' }}</strong>
+      </div>
+    </div>
+
+    <button class="btn-orders" (click)="goToOrders()">View My Orders</button>
+  </div>
+</div>
