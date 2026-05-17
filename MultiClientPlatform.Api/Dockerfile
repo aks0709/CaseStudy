@@ -14,6 +14,11 @@ WORKDIR /app
 
 COPY --from=build /app/publish .
 
+# Ensure the app listens on the container port
+ENV ASPNETCORE_URLS=http://+:8080
+# Run in Production by default inside container
+ENV ASPNETCORE_ENVIRONMENT=Production
+
 EXPOSE 8080
 
 ENTRYPOINT ["dotnet", "MultiClientPlatform.Api.dll"]

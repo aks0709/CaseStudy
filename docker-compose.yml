@@ -24,6 +24,7 @@ services:
       Jwt__Audience: "MultiClientPlatformUsers"
       Jwt__ExpiryMinutes: "60"
       ASPNETCORE_URLS: "http://+:8080"
+      ASPNETCORE_ENVIRONMENT: "Development"
     depends_on:
       - db
 
