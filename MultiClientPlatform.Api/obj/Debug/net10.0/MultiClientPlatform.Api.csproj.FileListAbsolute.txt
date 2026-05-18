@@ -131,3 +131,4 @@ c:\Users\akum1183\OneDrive - Capgemini\Desktop\dotnetUpskillCert\CaseStudy\Multi
 c:\Users\akum1183\OneDrive - Capgemini\Desktop\dotnetUpskillCert\CaseStudy\MultiClientPlatform.Api\obj\Debug\net10.0\MultiClientPlatform.Api.genruntimeconfig.cache
 c:\Users\akum1183\OneDrive - Capgemini\Desktop\dotnetUpskillCert\CaseStudy\MultiClientPlatform.Api\obj\Debug\net10.0\ref\MultiClientPlatform.Api.dll
 c:\Users\akum1183\OneDrive - Capgemini\Desktop\dotnetUpskillCert\CaseStudy\MultiClientPlatform.Api\bin\Debug\net10.0\BCrypt.Net-Next.dll
+C:\Users\akum1183\OneDrive - Capgemini\Desktop\dotnetUpskillCert\CaseStudy\MultiClientPlatform.Api\obj\Debug\net10.0\MultiClientPlatform.Api.sourcelink.json

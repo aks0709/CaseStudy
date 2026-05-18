@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MultiClientPlatform.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4c77e7d109bd979e96c5a7b2b6ac1eeec20afa84")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b49c8a21f3be5fbd35352a2994bab9a59b5a64c5")]
 [assembly: System.Reflection.AssemblyProductAttribute("MultiClientPlatform.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MultiClientPlatform.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
